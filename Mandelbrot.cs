@@ -8,33 +8,27 @@ using System.Drawing;
 
 namespace FunktionenTheorie
 {
-    class Julia
+    class Mandelbrot
     {
-        private static Complex _constant = -1;
-        private static double _radius;
         private static double[] _windowReals;
         private static double[] _windowImaginaries;
-        private static Bitmap _pixelsInJulia;
+        private static Bitmap _pixelsInMandelbrot;
         private static int _maxIter = 4;
         private static Size _windowSize;
+        private static double _functionOrder = 2;
         private static double _goldenRatio = (1 + Math.Sqrt(5)) / 2;
         private static Color[] _colorPalette = { Color.Black, Color.Red, Color.Orange, Color.White, Color.Blue,
                                                    Color.DarkBlue };
         private static Color[] _colorRange;
-
-        public static Complex Constant
-        {
-            set { _constant = value; }
-        }
 
         public static int MaxIter
         {
             set { _maxIter = value; }
         }
 
-        public static Bitmap PixelsInJulia
+        public static Bitmap PixelsInMandelbrot
         {
-            get { return _pixelsInJulia; }
+            get { return _pixelsInMandelbrot; }
         }
 
         public static Size WindowSize
@@ -43,16 +37,16 @@ namespace FunktionenTheorie
             set { _windowSize = value; }
         }
 
-        public static void computeRadius()
+        public static double FunctionOrder
         {
-            _radius = (1 + Math.Sqrt(1 + 4 * _constant.Magnitude))/2;
+            set { _functionOrder = value; }
         }
 
         public static double[] pixel2Complex(double minComplex, double maxComplex, int maxResolution)
         {
             double[] complexWindow1DValues = new double[maxResolution];
 
-            for(int pixel = 0; pixel != maxResolution; pixel++)
+            for (int pixel = 0; pixel != maxResolution; pixel++)
             {
                 //x = a + (p/width) * (b - a)
                 complexWindow1DValues[pixel] = minComplex + ((double)pixel / maxResolution) * (maxComplex - minComplex);
@@ -112,22 +106,22 @@ namespace FunktionenTheorie
             _colorRange = colorRange;
         }
 
-        public static Complex computeQuadraticFunction(Complex z)
+        public static Complex computeQuadraticFunction(Complex z, Complex constant)
         {
-            Complex f = z * z + _constant;
+            Complex f = Complex.Pow(z, _functionOrder) + constant;
             return f;
         }
 
-        public static int isInFilledJulia(Complex z)
+        public static int isInMandelbrot(Complex constant)
         {
-            Complex f = z;
+            Complex f = 0;
 
             for (int iteration = 0; iteration < _maxIter; iteration++)
             {
-                f = computeQuadraticFunction(f);
+                f = computeQuadraticFunction(f, constant);
                 //Console.WriteLine("Iteration: {0}, f = {1}\n", iteration, f);
 
-                if (f.Magnitude > _radius)
+                if (f.Magnitude > 2)
                 {
                     return _maxIter - iteration; // is not in the filled-in Julia, is in Basin
                 }
@@ -146,26 +140,18 @@ namespace FunktionenTheorie
             _windowImaginaries = pixel2Complex(min.Imaginary, max.Imaginary, height);
             getColorRange();
 
-            Bitmap pixelsInJulia = new Bitmap(width, height);
+            Bitmap pixelsInMandelbrot = new Bitmap(width, height);
 
             for (int realIndex = 0; realIndex < width; realIndex++)
             {
                 for (int imgIndex = 0; imgIndex < height; imgIndex++)
                 {
-                    colorIndex = isInFilledJulia(new Complex(_windowReals[realIndex], _windowImaginaries[imgIndex]));
-                    pixelsInJulia.SetPixel(realIndex, imgIndex, _colorRange[colorIndex]);
+                    colorIndex = isInMandelbrot(new Complex(_windowReals[realIndex], _windowImaginaries[imgIndex]));
+                    pixelsInMandelbrot.SetPixel(realIndex, imgIndex, _colorRange[colorIndex]);
                 }
             }
 
-            _pixelsInJulia = pixelsInJulia;
-        }
-
-        public static void test()
-        {
-            // test isInJulia
-            _constant = new Complex(-1, 0);
-            computeRadius();
-            _maxIter = 5;
+            _pixelsInMandelbrot = pixelsInMandelbrot;
         }
     }
 }

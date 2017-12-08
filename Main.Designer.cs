@@ -54,6 +54,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.maxIterLabel = new System.Windows.Forms.Label();
             this.maxIterNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.mandelbrotButton = new System.Windows.Forms.Button();
+            this.mandelbrotBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.functionOrderLabel = new System.Windows.Forms.Label();
+            this.functionOrderNumericUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.screenWidthNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.screenHeightNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minRealNumericUpDown)).BeginInit();
@@ -64,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.realConstantNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imaginaryConstantNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxIterNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.functionOrderNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // screenWidthNumericUpDown
@@ -223,10 +229,10 @@
             this.minImaginaryNumericUpDown.Size = new System.Drawing.Size(80, 20);
             this.minImaginaryNumericUpDown.TabIndex = 5;
             this.minImaginaryNumericUpDown.Value = new decimal(new int[] {
-            2,
+            15,
             0,
             0,
-            -2147483648});
+            -2147418112});
             // 
             // maxRealNumericUpDown
             // 
@@ -241,10 +247,10 @@
             this.maxRealNumericUpDown.Size = new System.Drawing.Size(80, 20);
             this.maxRealNumericUpDown.TabIndex = 6;
             this.maxRealNumericUpDown.Value = new decimal(new int[] {
-            2,
+            75,
             0,
             0,
-            0});
+            131072});
             // 
             // maxImaginaryNumericUpDown
             // 
@@ -259,17 +265,17 @@
             this.maxImaginaryNumericUpDown.Size = new System.Drawing.Size(80, 20);
             this.maxImaginaryNumericUpDown.TabIndex = 7;
             this.maxImaginaryNumericUpDown.Value = new decimal(new int[] {
-            2,
+            15,
             0,
             0,
-            0});
+            65536});
             // 
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel,
             this.toolStripProgressBar});
-            this.statusStrip.Location = new System.Drawing.Point(0, 231);
+            this.statusStrip.Location = new System.Drawing.Point(0, 273);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(284, 22);
             this.statusStrip.TabIndex = 19;
@@ -378,11 +384,73 @@
             0,
             0});
             // 
+            // mandelbrotButton
+            // 
+            this.mandelbrotButton.Location = new System.Drawing.Point(184, 222);
+            this.mandelbrotButton.Name = "mandelbrotButton";
+            this.mandelbrotButton.Size = new System.Drawing.Size(75, 23);
+            this.mandelbrotButton.TabIndex = 24;
+            this.mandelbrotButton.Text = "Mandelbrot";
+            this.mandelbrotButton.UseVisualStyleBackColor = true;
+            this.mandelbrotButton.Click += new System.EventHandler(this.mandelbrotButton_Click);
+            // 
+            // mandelbrotBackgroundWorker
+            // 
+            this.mandelbrotBackgroundWorker.WorkerReportsProgress = true;
+            this.mandelbrotBackgroundWorker.WorkerSupportsCancellation = true;
+            this.mandelbrotBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.mandelbrotBackgroundWorker_DoWork);
+            this.mandelbrotBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.mandelbrotBackgroundWorker_ProgressChanged);
+            this.mandelbrotBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.mandelbrotBackgroundWorker_RunWorkerCompleted);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(42, 245);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(122, 13);
+            this.label3.TabIndex = 25;
+            this.label3.Text = "-2 - 1.5i < c < 0.75 + 1.5i";
+            // 
+            // functionOrderLabel
+            // 
+            this.functionOrderLabel.AutoSize = true;
+            this.functionOrderLabel.Location = new System.Drawing.Point(24, 227);
+            this.functionOrderLabel.Name = "functionOrderLabel";
+            this.functionOrderLabel.Size = new System.Drawing.Size(51, 13);
+            this.functionOrderLabel.TabIndex = 26;
+            this.functionOrderLabel.Text = "f(z) order:";
+            // 
+            // functionOrderNumericUpDown
+            // 
+            this.functionOrderNumericUpDown.Location = new System.Drawing.Point(102, 222);
+            this.functionOrderNumericUpDown.Maximum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            0});
+            this.functionOrderNumericUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.functionOrderNumericUpDown.Name = "functionOrderNumericUpDown";
+            this.functionOrderNumericUpDown.Size = new System.Drawing.Size(71, 20);
+            this.functionOrderNumericUpDown.TabIndex = 27;
+            this.functionOrderNumericUpDown.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 253);
+            this.ClientSize = new System.Drawing.Size(284, 295);
+            this.Controls.Add(this.functionOrderNumericUpDown);
+            this.Controls.Add(this.functionOrderLabel);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.mandelbrotButton);
             this.Controls.Add(this.maxIterNumericUpDown);
             this.Controls.Add(this.maxIterLabel);
             this.Controls.Add(this.label1);
@@ -420,6 +488,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.realConstantNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imaginaryConstantNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxIterNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.functionOrderNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -453,6 +522,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label maxIterLabel;
         private System.Windows.Forms.NumericUpDown maxIterNumericUpDown;
+        private System.Windows.Forms.Button mandelbrotButton;
+        private System.ComponentModel.BackgroundWorker mandelbrotBackgroundWorker;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label functionOrderLabel;
+        private System.Windows.Forms.NumericUpDown functionOrderNumericUpDown;
     }
 }
 

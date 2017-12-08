@@ -19,8 +19,8 @@ namespace FunktionenTheorie
 
         private void JuliaDisplay_Load(object sender, EventArgs e)
         {
-            juliaPictureBox.Width = Julia.Size.Width;
-            juliaPictureBox.Height = Julia.Size.Height;
+            juliaPictureBox.Width = Julia.WindowSize.Width;
+            juliaPictureBox.Height = Julia.WindowSize.Height;
 
             ClientSize = new System.Drawing.Size(juliaPictureBox.Right, juliaPictureBox.Bottom);
 
