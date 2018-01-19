@@ -95,13 +95,6 @@ namespace FunktionenTheorie
 
                 colorRange[iter] = Color.FromArgb(r, g, b);
             }
-
-            //for (int iter = 0; iter <= _maxIter; iter++)
-            //{
-            //    grayValue = 255 * (Math.Exp(50 * (double)(iter - _maxIter) / _maxIter));
-            //    colorRange[iter] = Color.FromArgb((int)grayValue, (int)grayValue, (int)grayValue);
-            //}
-
             _colorRange = colorRange;
         }
 
@@ -118,7 +111,6 @@ namespace FunktionenTheorie
             for (int iteration = 0; iteration < _maxIter; iteration++)
             {
                 f = computeQuadraticFunction(f, constant);
-                //Console.WriteLine("Iteration: {0}, f = {1}\n", iteration, f);
 
                 if (f.Magnitude > 2)
                 {
