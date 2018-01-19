@@ -57,7 +57,7 @@ namespace FunktionenTheorie
             }
             catch
             {
-                toolStripStatusLabel.Text = "Fehler aufgetreten während des Rechnens des Radius";
+                toolStripStatusLabel.Text = "Error encountered while computing radius";
             }
 
             if (autosetCheckBox.Checked)
@@ -89,7 +89,7 @@ namespace FunktionenTheorie
             }
             catch
             {
-                juliaBackgroundWorker.ReportProgress(100, "Fehler aufgetreten während des Rechnens");
+                juliaBackgroundWorker.ReportProgress(100, "Error encountered computing function constants");
             }
 
             try
@@ -98,7 +98,7 @@ namespace FunktionenTheorie
             }
             catch
             {
-                juliaBackgroundWorker.ReportProgress(100, "Fehler aufgetreten während des Rechnens des Fensters");
+                juliaBackgroundWorker.ReportProgress(100, "Error encountered while computing the window");
             }
 
 
@@ -106,11 +106,10 @@ namespace FunktionenTheorie
             {
                 JuliaDisplay juliaDisplay = new JuliaDisplay();
                 juliaDisplay.ShowDialog();
-                //Julia.PixelsInJulia.Save("C:\\Julia.jpg", ImageFormat.Jpeg);
             }
             catch
             {
-                juliaBackgroundWorker.ReportProgress(100, "Fehler aufgetreten");
+                juliaBackgroundWorker.ReportProgress(100, "Error encountered while displaying filled-in Julia set");
             }
         }
 
@@ -165,18 +164,17 @@ namespace FunktionenTheorie
             }
             catch
             {
-                mandelbrotBackgroundWorker.ReportProgress(100, "Fehler aufgetreten während des Rechnens des Fensters");
+                mandelbrotBackgroundWorker.ReportProgress(100, "Error encountered while computing the window");
             }
 
             try
             {
                 MandelbrotDisplay mandelbrotDisplay = new MandelbrotDisplay();
                 mandelbrotDisplay.ShowDialog();
-                //Mandelbrot.PixelsInMandelbrot.Save("C:\\Julia.jpg", ImageFormat.Jpeg);
             }
             catch
             {
-                mandelbrotBackgroundWorker.ReportProgress(100, "Fehler aufgetreten");
+                mandelbrotBackgroundWorker.ReportProgress(100, "Error encountered while displaying Mandelbrot set");
             }
         }
 
