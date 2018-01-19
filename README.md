@@ -2,7 +2,7 @@
 
 A repository for tinkering with complex numbers, starting with a way of visualising the filled-in Julia set and the Mandelbrot set.
 
-![z^2 + i](https://raw.githubusercontent.com/ujemd/ComplexAnalysis/master/img/Julia.gif)
+![R = .5](https://raw.githubusercontent.com/ujemd/ComplexAnalysis/master/img/r.5.gif) ![R = .75](https://raw.githubusercontent.com/ujemd/ComplexAnalysis/master/img/r.75.gif) ![R = 1](https://raw.githubusercontent.com/ujemd/ComplexAnalysis/master/img/r1.gif) ![R = 1.25](https://raw.githubusercontent.com/ujemd/ComplexAnalysis/master/img/r1.25.gif)
 
 Any comment, suggestion or question is welcomed and appreciated!
 
