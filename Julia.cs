@@ -215,13 +215,7 @@ namespace FunktionenTheorie
 
                 colorRange[iter] = Color.FromArgb(r, g, b);
             }
-
-            //for (int iter = 0; iter <= _maxIter; iter++)
-            //{
-            //    grayValue = 255 * (Math.Exp(50 * (double)(iter - _maxIter) / _maxIter));
-            //    colorRange[iter] = Color.FromArgb((int)grayValue, (int)grayValue, (int)grayValue);
-            //}
-
+            
             _colorRange = colorRange;
         }
 
@@ -269,10 +263,6 @@ namespace FunktionenTheorie
         /// <param name="max">Maximum complex value of the frame.</param>
         public static void screen2ComplexWindow(Complex min, Complex max)
         {
-            //double initPhase = _constant.Phase, //Initial phase to be displayed, given by the user in _constant.
-            //    currentPhase = initPhase, //Current phase for which the representation is being computed.
-            //    constantMagnitude = _constant.Magnitude; //Magnitude of _constant.
-
             int width = _windowSize.Width, //Pixel window width.
                 height = _windowSize.Height, //Pixel window height.
                 totalFrames = _totalFrames,//1, //Total number of frames, depends on _stepPhase.
@@ -284,16 +274,6 @@ namespace FunktionenTheorie
             _windowImaginaries = pixel2Complex(min.Imaginary, max.Imaginary, height); //Get the imaginary numbers of the window frame.
             getWindowComplexArray(); //Get an array of the complex values combinations of reals and imaginaries.
             getColorRange(); //Get the range of colors.            
-
-            // Get number of total frames to be displayed. If step is set to 0, only the starting frame will be displayed.
-            //if (_stepPhase != 0)
-            //{
-            //    totalFrames = (int)Math.Floor(_2PI / _stepPhase);
-            //}
-            //else
-            //{
-            //    totalFrames = 1;
-            //}
 
             _pixelsInJulia = new Bitmap[totalFrames];
 
@@ -318,11 +298,6 @@ namespace FunktionenTheorie
                 }
                 // Set frame.
                 _pixelsInJulia[frame] = (Bitmap)pixelsInJulia.Clone();
-                // Increase phase of _constant.
-                //currentPhase += _stepPhase;
-                // Update _constant.
-                //_constant = new Complex(constantMagnitude * Math.Cos(currentPhase),
-                //    constantMagnitude * Math.Sin(currentPhase));
             }
 
             _totalFrames = totalFrames;
