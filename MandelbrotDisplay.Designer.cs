@@ -49,6 +49,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.mandelbrotPictureBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "MandelbrotDisplay";
             this.Text = "Mandelbrot";
             this.Load += new System.EventHandler(this.MandelbrotDisplay_Load);

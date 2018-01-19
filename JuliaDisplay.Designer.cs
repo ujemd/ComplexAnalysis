@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.juliaPictureBox = new System.Windows.Forms.PictureBox();
+            this.juliaPlayBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.juliaPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,6 +43,14 @@
             this.juliaPictureBox.TabIndex = 0;
             this.juliaPictureBox.TabStop = false;
             this.juliaPictureBox.Visible = false;
+            this.juliaPictureBox.Click += new System.EventHandler(this.juliaPictureBox_Click);
+            // 
+            // juliaPlayBackgroundWorker
+            // 
+            this.juliaPlayBackgroundWorker.WorkerReportsProgress = true;
+            this.juliaPlayBackgroundWorker.WorkerSupportsCancellation = true;
+            this.juliaPlayBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.juliaPlayBackgroundWorker_DoWork);
+            this.juliaPlayBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.juliaPlayBackgroundWorker_ProgressChanged);
             // 
             // JuliaDisplay
             // 
@@ -49,6 +58,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.juliaPictureBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "JuliaDisplay";
             this.Text = "JuliaDisplay";
             this.Load += new System.EventHandler(this.JuliaDisplay_Load);
@@ -60,6 +71,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox juliaPictureBox;
+        private System.ComponentModel.BackgroundWorker juliaPlayBackgroundWorker;
 
     }
 }
