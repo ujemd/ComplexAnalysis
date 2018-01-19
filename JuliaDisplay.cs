@@ -46,7 +46,6 @@ namespace FunktionenTheorie
             int totalFrames = Julia.TotalFrames,
                 frame = 0; 
 
-            //for (int frame = 0; frame < totalFrames; frame++)
             while (true)
             {
                 juliaPlayBackgroundWorker.ReportProgress(1, frame);
