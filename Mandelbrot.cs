@@ -61,8 +61,7 @@ namespace FunktionenTheorie
 
             Color c0, c1;
 
-            double grayValue = 0,
-                colorDelta = 1.0 / (_colorPalette.Length - 1),
+            double colorDelta = 1.0 / (_colorPalette.Length - 1),
                 globalRatio = 0,
                 localRatio = 0;
 

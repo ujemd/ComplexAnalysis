@@ -181,8 +181,7 @@ namespace FunktionenTheorie
 
             Color c0, c1;
 
-            double grayValue = 0,
-                colorDelta = 1.0 / (_colorPalette.Length - 1),
+            double colorDelta = 1.0 / (_colorPalette.Length - 1),
                 globalRatio = 0,
                 localRatio = 0;
 
@@ -327,14 +326,6 @@ namespace FunktionenTheorie
             }
 
             _totalFrames = totalFrames;
-        }
-
-        public static void test()
-        {
-            string fileName = "ola\\.pdf";
-            Regex specialCharacters = new Regex(@"[^A-Za-z0-9_.]");
-            if (specialCharacters.IsMatch(fileName))
-                throw new Exception("El nombre del archivo no es valido");
         }
     }
 }

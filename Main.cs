@@ -22,7 +22,7 @@ namespace FunktionenTheorie
 
         private void Main_Load(object sender, EventArgs e)
         {
-            Julia.test();
+            
         }
 
         private void JuliaButton_Click(object sender, EventArgs e)
